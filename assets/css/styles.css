@@ -1,0 +1,725 @@
+/* ============================================================
+   M&M DRINK LIQUOR · REDISEÑO PREMIUM
+   Animaciones suaves, elegantes y profesionales
+   ============================================================ */
+
+:root {
+    --gold: #C9A050;
+    --gold-dark: #B8923F;
+    --gold-light: #DAB866;
+    --bg-dark: #060608;
+    --card-bg: rgba(255, 255, 255, 0.03);
+    --ease-premium: cubic-bezier(0.25, 1, 0.5, 1);
+    --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: #060608;
+    color: #fff;
+    font-family: 'Inter', sans-serif;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* ============================================================
+   CINEMATIC LOADING OVERLAY
+   ============================================================ */
+
+#cinematic-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background: #060608;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 1;
+    transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.65, 0, 0.35, 1);
+    pointer-events: all;
+}
+
+#cinematic-overlay.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.cinematic-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    animation: cinematicPulse 2s ease-in-out infinite;
+}
+
+@keyframes cinematicPulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.02); }
+}
+
+.cinematic-logo {
+    position: relative;
+    width: 80px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cinematic-logo-img {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+    z-index: 2;
+    position: relative;
+    animation: logoReveal 1.2s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+@keyframes logoReveal {
+    0% {
+        opacity: 0;
+        transform: scale(0.5) rotate(-10deg);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) rotate(0deg);
+    }
+}
+
+.cinematic-logo-ring {
+    position: absolute;
+    inset: -8px;
+    border-radius: 50%;
+    border: 2px solid transparent;
+    border-top-color: var(--gold);
+    border-right-color: rgba(201, 160, 80, 0.3);
+    animation: ringSpin 2s linear infinite;
+}
+
+@keyframes ringSpin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.cinematic-logo-ring::before {
+    content: '';
+    position: absolute;
+    inset: -4px;
+    border-radius: 50%;
+    border: 2px solid transparent;
+    border-bottom-color: rgba(201, 160, 80, 0.15);
+    animation: ringSpin 3s linear infinite reverse;
+}
+
+.cinematic-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 42px;
+    font-weight: 900;
+    letter-spacing: -0.02em;
+    background: linear-gradient(135deg, #fff 40%, #8a8a8a);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin: 0;
+    animation: titleSlide 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.3s both;
+}
+
+@keyframes titleSlide {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.cinematic-subtitle {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.4em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin: -8px 0 4px 0;
+    animation: subtitleFade 0.8s ease 0.5s both;
+}
+
+@keyframes subtitleFade {
+    0% {
+        opacity: 0;
+        letter-spacing: 0.8em;
+    }
+    100% {
+        opacity: 1;
+        letter-spacing: 0.4em;
+    }
+}
+
+.cinematic-loader {
+    width: 160px;
+    height: 2px;
+    background: rgba(255, 255, 255, 0.06);
+    border-radius: 4px;
+    overflow: hidden;
+    margin-top: 8px;
+    animation: loaderAppear 0.6s ease 0.6s both;
+}
+
+@keyframes loaderAppear {
+    0% {
+        opacity: 0;
+        transform: scaleX(0.5);
+    }
+    100% {
+        opacity: 1;
+        transform: scaleX(1);
+    }
+}
+
+.cinematic-loader-bar {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, var(--gold), var(--gold-light), var(--gold));
+    border-radius: 4px;
+    animation: loaderProgress 2s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+@keyframes loaderProgress {
+    0% { width: 0%; }
+    30% { width: 35%; }
+    60% { width: 70%; }
+    85% { width: 88%; }
+    100% { width: 100%; }
+}
+
+/* ============================================================
+   ANIMACIONES SUTILES
+   ============================================================ */
+
+@keyframes pulse-slow {
+    0%, 100% { opacity: 0.4; transform: scale(1); }
+    50% { opacity: 0.7; transform: scale(1.05); }
+}
+
+@keyframes fade-up {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-pulse-slow {
+    animation: pulse-slow 6s ease-in-out infinite;
+}
+
+/* ---------- HEADER SCROLL ---------- */
+#main-header {
+    transition: all 0.7s var(--ease-premium);
+}
+
+#main-header.scrolled {
+    background: rgba(6, 6, 8, 0.95);
+    border-bottom-color: rgba(201, 160, 80, 0.15);
+}
+
+/* ---------- SCROLL HORIZONTAL CATEGORÍAS ---------- */
+.hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+
+#categories-scroll {
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+}
+
+.cat-btn-custom {
+    flex-shrink: 0;
+    padding: 8px 18px;
+    border-radius: 100px;
+    font-size: 12px;
+    font-weight: 600;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    color: #8E8E93;
+    transition: all 0.4s var(--ease-premium);
+    white-space: nowrap;
+    cursor: pointer;
+    user-select: none;
+}
+
+.cat-btn-custom:hover {
+    background: rgba(255, 255, 255, 0.08);
+    color: #fff;
+    transform: translateY(-2px);
+    border-color: rgba(255, 255, 255, 0.15);
+}
+
+.cat-btn-custom.active {
+    background: linear-gradient(135deg, #C9A050, #B8923F);
+    color: #000;
+    border-color: transparent;
+    box-shadow: 0 8px 24px rgba(201, 160, 80, 0.25);
+    transform: translateY(-2px);
+}
+
+/* ---------- PRODUCT CARDS ---------- */
+.product-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 16px;
+    padding: 12px;
+    transition: all 0.6s var(--ease-premium);
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+.product-card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(201, 160, 80, 0.25);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4);
+    background: rgba(255, 255, 255, 0.05);
+}
+
+/* ---------- IMÁGENES DE PRODUCTOS ---------- */
+.product-card .img-wrap {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    border-radius: 12px;
+    overflow: hidden;
+    background: #0a0a0f;
+    margin-bottom: 10px;
+}
+
+.product-card .img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.8s var(--ease-premium);
+}
+
+.product-card:hover .img-wrap img {
+    transform: scale(1.06);
+}
+
+/* ---------- NO HAY IMAGEN DISPONIBLE ---------- */
+.product-card .img-wrap .no-image-text {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: #0a0a0f;
+    color: #555;
+    font-size: 12px;
+    font-weight: 500;
+    gap: 6px;
+    text-align: center;
+    line-height: 1.3;
+}
+
+.product-card .img-wrap .no-image-text span {
+    font-size: 28px;
+    opacity: 0.6;
+}
+
+.product-card .img-wrap .no-image-text p {
+    margin: 0;
+    font-size: 11px;
+    color: #666;
+}
+
+/* ---------- BEBIDA DEL DÍA - SIN IMAGEN ---------- */
+.daily-no-image {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: #0a0a0f;
+    color: #555;
+    font-size: 14px;
+    font-weight: 500;
+    gap: 8px;
+    text-align: center;
+    line-height: 1.3;
+}
+
+.daily-no-image span {
+    font-size: 32px;
+    opacity: 0.6;
+}
+
+.daily-no-image p {
+    margin: 0;
+    font-size: 13px;
+    color: #666;
+}
+
+/* ---------- CARRITO - SIN IMAGEN ---------- */
+.cart-no-image {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: #0a0a0f;
+    border-radius: 8px;
+    flex-shrink: 0;
+    text-align: center;
+    line-height: 1.2;
+}
+
+.cart-no-image span {
+    font-size: 14px;
+    opacity: 0.5;
+}
+
+.cart-no-image span:last-child {
+    font-size: 6px;
+    color: #555;
+}
+
+/* ---------- BADGES ---------- */
+.product-card .badge {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    z-index: 5;
+    background: linear-gradient(135deg, #e74c3c, #c0392b);
+    color: #fff;
+    font-size: 8px;
+    font-weight: 800;
+    text-transform: uppercase;
+    padding: 2px 10px;
+    border-radius: 100px;
+    letter-spacing: 0.05em;
+}
+
+.product-card .badge-vaso {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    z-index: 5;
+    background: linear-gradient(135deg, #2d7d46, #1a5a33);
+    color: #fff;
+    font-size: 8px;
+    font-weight: 800;
+    text-transform: uppercase;
+    padding: 2px 10px;
+    border-radius: 100px;
+    letter-spacing: 0.05em;
+}
+
+.product-card .category-tag {
+    font-size: 9px;
+    color: var(--gold);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    display: block;
+    margin-bottom: 3px;
+}
+
+.product-card .product-name {
+    font-size: 13px;
+    font-weight: 600;
+    color: #fff;
+    line-height: 1.3;
+    min-height: 34px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.product-card .price {
+    font-size: 14px;
+    font-weight: 700;
+    color: #fff;
+}
+
+/* ---------- BOTONES ---------- */
+.product-card .add-btn {
+    width: 32px;
+    height: 32px;
+    border-radius: 10px;
+    background: rgba(201, 160, 80, 0.12);
+    color: var(--gold);
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.4s var(--ease-spring);
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+.product-card .add-btn:hover {
+    background: var(--gold);
+    color: #000;
+    transform: scale(1.08);
+    box-shadow: 0 8px 24px rgba(201, 160, 80, 0.3);
+}
+
+.product-card .add-btn:active {
+    transform: scale(0.92);
+}
+
+/* ---------- BOTONES PEQUEÑOS PARA VASO ---------- */
+.add-btn-small {
+    width: 24px;
+    height: 24px;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.06);
+    color: #8E8E93;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s var(--ease-spring);
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 700;
+    flex-shrink: 0;
+}
+
+.add-btn-small:hover {
+    background: var(--gold);
+    color: #000;
+    transform: scale(1.08);
+    box-shadow: 0 4px 16px rgba(201, 160, 80, 0.3);
+    border-color: transparent;
+}
+
+.add-btn-small.gold {
+    background: rgba(201, 160, 80, 0.15);
+    color: var(--gold);
+    border-color: rgba(201, 160, 80, 0.15);
+}
+
+.add-btn-small.gold:hover {
+    background: var(--gold);
+    color: #000;
+    border-color: transparent;
+}
+
+/* ---------- SKELETON ---------- */
+.skeleton {
+    background: linear-gradient(90deg, #121216 0%, #1e1e26 30%, #121216 60%, #1e1e26 100%);
+    background-size: 300% 100%;
+    animation: shimmer 2.5s ease-in-out infinite;
+    border-radius: 16px;
+    aspect-ratio: 1;
+}
+
+@keyframes shimmer {
+    0% { background-position: 0% 0%; }
+    100% { background-position: 300% 0%; }
+}
+
+/* ---------- TOAST ---------- */
+#toast-notification {
+    transition: all 0.6s var(--ease-spring);
+}
+
+#toast-notification.show {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+}
+
+/* ---------- CARRITO ---------- */
+#cart-sheet {
+    background: rgba(6, 6, 8, 0.97);
+    backdrop-filter: blur(24px);
+}
+
+#cart-items-container .cart-item {
+    animation: slideIn 0.4s var(--ease-spring) backwards;
+}
+
+@keyframes slideIn {
+    0% { opacity: 0; transform: translateX(20px); }
+    100% { opacity: 1; transform: translateX(0); }
+}
+
+.cart-item img {
+    width: 48px;
+    height: 48px;
+    object-fit: cover;
+    border-radius: 8px;
+    flex-shrink: 0;
+}
+
+/* ---------- BEBIDA DEL DÍA ---------- */
+#daily-drink-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.7s var(--ease-premium);
+}
+
+#daily-drink-image:hover {
+    transform: scale(1.04);
+}
+
+/* ---------- SCROLLBAR ---------- */
+::-webkit-scrollbar {
+    width: 4px;
+}
+
+::-webkit-scrollbar-track {
+    background: #060608;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--gold);
+    border-radius: 10px;
+    transition: all 0.3s;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--gold-light);
+}
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width: 640px) {
+    .product-card {
+        padding: 10px;
+        border-radius: 14px;
+    }
+
+    .product-card .product-name {
+        font-size: 11px;
+        min-height: 28px;
+    }
+
+    .product-card .price {
+        font-size: 12px;
+    }
+
+    .product-card .add-btn {
+        width: 28px;
+        height: 28px;
+        border-radius: 8px;
+    }
+
+    .product-card .img-wrap {
+        border-radius: 10px;
+        margin-bottom: 8px;
+    }
+
+    .cat-btn-custom {
+        padding: 6px 14px;
+        font-size: 10px;
+    }
+
+    .product-card .category-tag {
+        font-size: 8px;
+    }
+
+    .product-card .badge,
+    .product-card .badge-vaso {
+        font-size: 7px;
+        padding: 2px 8px;
+        top: 8px;
+    }
+    
+    .product-card .badge-vaso {
+        right: 8px;
+    }
+
+    .add-btn-small {
+        width: 22px;
+        height: 22px;
+        font-size: 10px;
+        border-radius: 6px;
+    }
+
+    .cart-item img {
+        width: 40px;
+        height: 40px;
+    }
+
+    .product-card .img-wrap .no-image-text span {
+        font-size: 22px;
+    }
+    
+    .product-card .img-wrap .no-image-text p {
+        font-size: 9px;
+    }
+    
+    .daily-no-image span {
+        font-size: 24px;
+    }
+    
+    .daily-no-image p {
+        font-size: 11px;
+    }
+    
+    .cart-no-image {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .cart-no-image span {
+        font-size: 12px;
+    }
+
+    .cinematic-title {
+        font-size: 30px;
+    }
+
+    .cinematic-logo {
+        width: 60px;
+        height: 60px;
+    }
+
+    .cinematic-logo-img {
+        width: 60px;
+        height: 60px;
+    }
+
+    .cinematic-loader {
+        width: 120px;
+    }
+}
+
+@media (min-width: 641px) and (max-width: 1024px) {
+    .product-card {
+        padding: 14px;
+    }
+
+    .product-card .product-name {
+        font-size: 13px;
+        min-height: 34px;
+    }
+}
+
+/* ---------- REDUCE MOTION ---------- */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
